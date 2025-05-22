@@ -8,6 +8,7 @@ import { Button } from './ui/button';
 import { ImageIcon, Loader2Icon, SendIcon } from 'lucide-react';
 import { createPost } from '@/actions/post.action';
 import toast from 'react-hot-toast';
+import ImageUpload from './Imageupload';
 
 const CreatePost = () => {
   const { user } = useUser();
@@ -21,7 +22,7 @@ const CreatePost = () => {
     setIsLoading(true)
       try {
        const result =  await createPost(content,imageUrl)
-       if (result.success) {
+       if (result?.success) {
           setContent("")
           setImageUrl("")
           setShowImageUpload(false)
@@ -52,8 +53,8 @@ const CreatePost = () => {
             />
           </div>
 
-          {/* {(showImageUpload || imageUrl) && (
-            <div className="border rounded-lg p-4">
+          {(showImageUpload || imageUrl) && (
+            <div className="border rounded-lg p-4 ">
               <ImageUpload
                 endpoint="postImage"
                 value={imageUrl}
@@ -63,7 +64,7 @@ const CreatePost = () => {
                 }}
               />
             </div>
-          )} */}
+          )}
 
           <div className="flex items-center justify-between border-t pt-4">
             <div className="flex space-x-2">
